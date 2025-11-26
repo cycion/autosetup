@@ -170,7 +170,7 @@ wallpapers_install() {
         SnowMountain.jpg
         CloudySnowMountain.jpg
     )
-    base_url="https://raw.githubusercontent.com/cycion/dotdotfile/refs/heads/main/.config/wallpapers"
+    base_url="https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/images/Wallpapers"
 
     for wallpaper in "${wallpapers[@]}"; do
         log dl "Downloading $wallpaper"
@@ -196,9 +196,9 @@ zsh_install() {
 
     log info "Loading configs"
     log inst "Loading oh-my-posh configs"
-    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/dotdotfile/refs/heads/main/.config/oh-my-posh/dots.toml -o $HOME/.config/oh-my-posh/dots.toml"
+    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/oh-my-posh/dots.toml -o $HOME/.config/oh-my-posh/dots.toml"
     log inst "Loading .zshrc"
-    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/dotdotfile/refs/heads/main/.zshrc -o $HOME/.zshrc"
+    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/.zshrc -o $HOME/.zshrc"
 
     log info "Installing zsh plugins"
     if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
@@ -253,13 +253,13 @@ icons_install() {
 # Installing gtksourceview theme
 gtksrc_theme() {
     log info "Installing gtk-source-view theme"
-    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/dotdotfile/refs/heads/main/gnome/tokyonight-dark.xml -o ~/.local/share/gtksourceview-5/styles/tokyonight-dark.xml"
+    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/gtksourceview-5/tokyonight-dark.xml -o ~/.local/share/gtksourceview-5/styles/tokyonight-dark.xml"
 }
 
 # Installing terminal themes
 terminal_theme() {
     log info "Installing gnome-terminal theme"
-    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/dotdotfile/refs/heads/main/.config/dconf/gnomeProfiles.dconf -o $TEMP/gnomeProfs.dconf"
+    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/dconf/gnomeProfiles.dconf -o $TEMP/gnomeProfs.dconf"
     dconf load /org/gnome/terminal/legacy/profiles:/ < $TEMP/gnomeProfs.dconf
 }
 
