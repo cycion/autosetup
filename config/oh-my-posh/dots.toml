@@ -84,8 +84,8 @@ magenta2 = "#dca0c1"
       cache_duration = "none"
 
   [[blocks.segments]]
-    template = "\uf444 \uf007 {{ .UserName }}<p:blue>@</><p:blue>{{ .HostName }}</> \uf444"
-    foreground = "p:blue"
+    template = "\uf444 \uf007 {{ .UserName }}<p:yellow2>@</><p:yellow2>{{ .HostName }}</> \uf444"
+    foreground = "p:yellow2"
     background = "transparent"
     type = "session"
     style = "plain"
@@ -95,8 +95,8 @@ magenta2 = "#dca0c1"
       cache_duration = "none"
 
   [[blocks.segments]]
-    template = "\uf444 {{ if .Writable }}\uf07b{{ else }}<p:magenta2>\uf456</>{{ end }} {{ .Path }} \uf444"
-    foreground = "p:magenta2"
+    template = "\uf444 {{ if .Writable }}\uf07b{{ else }}<p:green>\uf456</>{{ end }} {{ .Path }} \uf444"
+    foreground = "p:green"
     background = "transparent"
     type = "path"
     style = "plain"
@@ -122,7 +122,7 @@ magenta2 = "#dca0c1"
       
   [[blocks.segments]]
     template = "\uf444 \uf253 {{ .FormattedMs }} \uf444"
-    foreground = "p:cyan"
+    foreground = "p:blue"
     background = "transparent"
     type = "executiontime"
     style = "plain"
