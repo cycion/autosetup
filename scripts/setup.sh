@@ -140,7 +140,7 @@ utils_install() {
     sudo pacman -Rns --noconfirm malcontent gnome-user-docs yelp gnome-weather gnome-maps gnome-tour gnome-music gnome-contacts simple-scan 2>/dev/null || true
 
     log info "Installing useful programs"
-    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship --noconfirm"
+    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting --noconfirm"
     dltry "git clone https://github.com/LotusInputEngine/ibus-lotus.git $TEMP/ibus-lotus"
     sudo make -C $TEMP/ibus-lotus install 
     ibus restart
