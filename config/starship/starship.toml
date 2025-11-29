@@ -83,7 +83,7 @@ format = "[\uf444 $symbol $status \uf444]($style)"
 
 [username]
 style_user = 'fg:yellow'
-style_root = 'bold fg:yellow'
+style_root = 'bold fg:red'
 show_always = true
 format = "[\uf444 \uf007 $user]($style)"
 
