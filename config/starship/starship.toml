@@ -73,11 +73,12 @@ white2 = '#bac2de'
 [status]
 disabled = false
 symbol = "\uf467"
-not_executable_symbol = "\U000f13ce"
+not_executable_symbol = "\U0000f013"
 not_found_symbol = "\uf002"
-sigint_symbol = "\uf28d"
-signal_symbol = "\uef9d"
-style = 'fg:red'
+sigint_symbol = "\uf426"
+signal_symbol = "\U0000223f"
+map_symbol = true
+style = 'bold fg:red'
 format = "[\uf444 $symbol $status \uf444]($style)"
 
 [username]
