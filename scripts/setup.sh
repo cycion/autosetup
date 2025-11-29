@@ -77,7 +77,7 @@ dltry() {
 }
 
 # === Directory creations ===
-mkdir -p ~/.config/gtk-themes ~/.config/oh-my-posh ~/Pictures/Wallpapers ~/.local/share/gtksourceview-5/styles ~/.local/share/icons
+mkdir -p ~/.config/gtk-themes ~/.config/starship ~/Pictures/Wallpapers ~/.local/share/gtksourceview-5/styles ~/.local/share/icons
 
 # === Setup task ===
 
@@ -140,7 +140,7 @@ utils_install() {
     sudo pacman -Rns --noconfirm malcontent gnome-user-docs yelp gnome-weather gnome-maps gnome-tour gnome-music gnome-contacts simple-scan 2>/dev/null || true
 
     log info "Installing useful programs"
-    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi --noconfirm"
+    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship --noconfirm"
     dltry "git clone https://github.com/LotusInputEngine/ibus-lotus.git $TEMP/ibus-lotus"
     sudo make -C $TEMP/ibus-lotus install 
     ibus restart
@@ -185,35 +185,29 @@ zsh_install() {
     else
         log info "Installing oh-my-zsh"
         dltry 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
-    fi
-
-    if [ -e "$HOME/.local/bin/oh-my-posh" ]; then
-        log step "Skipped installing oh-my-posh: already installed"
-    else
-        log info "Installing oh-my-posh"
-        dltry "curl -s https://ohmyposh.dev/install.sh | bash -s"
+        chsh -s /usr/bin/zsh
     fi
 
     log info "Loading configs"
-    log inst "Loading oh-my-posh configs"
-    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/oh-my-posh/dots.toml -o $HOME/.config/oh-my-posh/dots.toml"
+    log inst "Loading starship.rs config"
+    dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/starship/starship.toml -o $HOME/.config/starship/starship.toml"
     log inst "Loading .zshrc"
     dltry "curl -fsSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/.zshrc -o $HOME/.zshrc"
 
-    log info "Installing zsh plugins"
-    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
-        log inst "Installing zsh-syntax-highlighting"
-        dltry "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-    else
-        log step "Skipped installing zsh-syntax-highlighting: already installed"
-    fi
+    # log info "Installing zsh plugins"
+    # if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    #     log inst "Installing zsh-syntax-highlighting"
+    #     dltry "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    # else
+    #     log step "Skipped installing zsh-syntax-highlighting: already installed"
+    # fi
 
-    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-        log inst "Installing zsh-autosuggestions"
-        dltry "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    else
-        log step "Skipped installing zsh-autosuggestions: already installed"
-    fi
+    # if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+    #     log inst "Installing zsh-autosuggestions"
+    #     dltry "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    # else
+    #     log step "Skipped installing zsh-autosuggestions: already installed"
+    # fi
 }
 
 # Configuring HiDPI
@@ -371,7 +365,7 @@ OPTIONS:
   -c,  --cachyos            Enable CachyOS repos
   -u,  --utils              Install GNOME utilities & remove bloat
   -w,  --wallpapers         Download wallpapers
-  -z,  --zsh                Install zsh + oh-my-zsh + oh-my-posh
+  -z,  --zsh                Install zsh + oh-my-zsh + starship
   -gs, --gnome-scale        Enable fractional scaling tweaks
   -gt, --gtk-theme          Install GTK theme
   -gi, --icons              Install icon theme

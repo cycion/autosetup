@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/.local/bin
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -71,32 +72,33 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# ================ User configuration ================
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
+# === editor preferences ===
 export VISUAL=nano
 export EDITOR=nano
 
+# Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
 #   export EDITOR='nvim'
 # fi
 
-# Compilation flags
+# === compilation flags ===
 # export ARCHFLAGS="-arch $(uname -m)"
-
 export CFLAGS="-march=native -O3"
 export CXXFLAGS="-march=native -O3"
 export RUSTFLAGS="-Ctarget-cpu=native -C opt-level=3 -Ctarget-feature=+avx2,+aes,+sse4.2,+bmi,+bmi2,+fma,+lzcnt,+popcnt"
 
+# === Aliases ====
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
 # users are encouraged to define aliases within a top-level file in
@@ -104,15 +106,20 @@ export RUSTFLAGS="-Ctarget-cpu=native -C opt-level=3 -Ctarget-feature=+avx2,+aes
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
-
-# Environment variables
-export SUDO_PROMPT=$'\a[sudo] password for %p: \uf023 '
-export SUDO_EDITOR=nano
-
-typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias sudo="sudo "
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/dots.toml)"
+# === sudo configuration ===
+export SUDO_PROMPT=$'\a[sudo] password for %p: \uf023 '
+export SUDO_EDITOR=nano
+
+# === starship.rs ===
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+eval "$(starship init zsh)"
+
+# === zsh plugins ===
+typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
