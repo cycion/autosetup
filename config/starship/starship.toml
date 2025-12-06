@@ -31,6 +31,25 @@ cyan2 = '#73daca'
 cyan3 = '#b4f9f8'
 blue2 = '#2ac3de'
 
+[palettes.ubuntu] # Ubuntu color scheme
+black = '#171421'
+red = '#C21A23'
+green = '#26A269'
+yellow = '#A2734C'
+blue = '#0037DA'
+magenta = '#881798'
+cyan = '#3A96DD'
+white = '#CCCCCC'
+
+black2 = '#767676'
+red2 = '#C01C28'
+green2 = '#26A269'
+yellow2 = '#A2734C'
+blue2 = '#08458F'
+magenta2 = '#A347BA'
+cyan2 = '#2C9FB3'
+white2 = '#f2f2f2'
+
 [palettes.ayu] # Ayu dark color scheme
 black = '#1e232b'
 red = '#ea6c73'
