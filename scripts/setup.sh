@@ -234,7 +234,8 @@ gtk_theme_install() {
         dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout add ZorinGrey-Light"
         dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout add ZorinGrey-Dark"
         dltry "git -C $TEMP/zorin-desktop-themes/ checkout master"
-        cp -r "$TEMP/zorin-desktop-themes/Zorin*" "~/.themes/"
+        cp -r "$TEMP/zorin-desktop-themes/Zorin*" "$HOME/.themes/"
+    fi
 
     if ! gnome-extensions list | grep -q dash-to-dock; then
         log warn "Dash-to-dock not installed. Skipping dock fix."
@@ -286,6 +287,9 @@ cursor_install() {
 # Installing librewolf themes
 librewolf_theme() {
     [[ -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ]] && gtk_theme_install
+    if ! pacman -Qs librewolf > /dev/null; then
+        librewolf_install
+    fi
     log info "Installing librewolf theme"
     read -n 1 -s -r -p "Make sure you have created a firefox profile"
     LIBREPATH=$(find ~/.librewolf -maxdepth 1 -type d -name "*default-release" | head -n 1)
