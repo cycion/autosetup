@@ -221,7 +221,7 @@ scale_enable() {
 # Installing MacTahoe GTK theme
 gtk_theme_install() {
     log dl "Downloading MacTahoe-gtk-theme"
-    [ -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ] || dltry "git clone --depth=1 https://github.com/vinceliuice/MacTahoe-gtk-theme.git ~/.config/gtk-themes/MacTahoe-gtk-theme"
+    [ ! -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ] || dltry "git clone --depth=1 https://github.com/vinceliuice/MacTahoe-gtk-theme.git ~/.config/gtk-themes/MacTahoe-gtk-theme"
 
     log inst "Installing MacTahoe-gtk-theme"
     ~/.config/gtk-themes/MacTahoe-gtk-theme/install.sh --libadwaita --shell -i apple -ns --round --darker
@@ -291,7 +291,7 @@ librewolf_theme() {
         librewolf_install
     fi
     log info "Installing librewolf theme"
-    read -n 1 -s -r -p "Make sure you have created a firefox profile"
+    read -n 1 -s -r -p "Make sure you have created a firefox profile. Press any key to continue..."
     LIBREPATH=$(find ~/.librewolf -maxdepth 1 -type d -name "*default-release" | head -n 1)
     mkdir -p $LIBREPATH/chrome
     cp ~/.config/gtk-themes/MacTahoe-gtk-theme/other/firefox/* $LIBREPATH/chrome -r
