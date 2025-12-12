@@ -140,7 +140,7 @@ utils_install() {
     sudo pacman -Rns --noconfirm malcontent gnome-user-docs yelp gnome-weather gnome-maps gnome-tour gnome-music gnome-contacts simple-scan 2>/dev/null || true
 
     log info "Installing useful programs"
-    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting --noconfirm"
+    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting arduino-cli arduino-ide-bin arduino-language-server --noconfirm"
     dltry "git clone https://github.com/LotusInputEngine/ibus-lotus.git $TEMP/ibus-lotus"
     sudo make -C $TEMP/ibus-lotus install 
     ibus restart
@@ -225,6 +225,16 @@ gtk_theme_install() {
 
     log inst "Installing MacTahoe-gtk-theme"
     ~/.config/gtk-themes/MacTahoe-gtk-theme/install.sh --libadwaita --shell -i apple -ns --round --darker
+
+    
+    if [ ! -d "$HOME/.themes/ZorinGrey-Dark" ]; then
+        log dl "Downloading ZorinGrey theme"
+        dltry "git clone --no-checkout https://github.com/ZorinOS/zorin-desktop-themes.git $TEMP/zorin-desktop-themes"
+        dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout init"
+        dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout add ZorinGrey-Light"
+        dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout add ZorinGrey-Dark"
+        dltry "git -C $TEMP/zorin-desktop-themes/ checkout master"
+        cp -r "$TEMP/zorin-desktop-themes/Zorin*" "~/.themes/"
 
     if ! gnome-extensions list | grep -q dash-to-dock; then
         log warn "Dash-to-dock not installed. Skipping dock fix."
