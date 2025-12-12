@@ -226,7 +226,6 @@ gtk_theme_install() {
     log inst "Installing MacTahoe-gtk-theme"
     ~/.config/gtk-themes/MacTahoe-gtk-theme/install.sh --libadwaita --shell -i apple -ns --round --darker
 
-    
     if [ ! -d "$HOME/.themes/ZorinGrey-Dark" ]; then
         log dl "Downloading ZorinGrey theme"
         dltry "git clone --no-checkout https://github.com/ZorinOS/zorin-desktop-themes.git $TEMP/zorin-desktop-themes"
@@ -286,7 +285,7 @@ cursor_install() {
 
 # Installing librewolf themes
 librewolf_theme() {
-    [[ -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ]] && gtk_theme_install
+    [[ -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ]] || gtk_theme_install
     if ! pacman -Qs librewolf > /dev/null; then
         librewolf_install
     fi
