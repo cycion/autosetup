@@ -221,7 +221,7 @@ scale_enable() {
 # Installing MacTahoe GTK theme
 gtk_theme_install() {
     log dl "Downloading MacTahoe-gtk-theme"
-    [ ! -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ] || dltry "git clone --depth=1 https://github.com/vinceliuice/MacTahoe-gtk-theme.git ~/.config/gtk-themes/MacTahoe-gtk-theme"
+    [ -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ] || dltry "git clone --depth=1 https://github.com/vinceliuice/MacTahoe-gtk-theme.git ~/.config/gtk-themes/MacTahoe-gtk-theme"
 
     log inst "Installing MacTahoe-gtk-theme"
     ~/.config/gtk-themes/MacTahoe-gtk-theme/install.sh --libadwaita --shell -i apple -ns --round --darker
