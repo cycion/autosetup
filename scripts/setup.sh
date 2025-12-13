@@ -34,6 +34,26 @@ log() {
     esac
 }
 
+# === Environment check ===
+if [[ $EUID -eq 0 ]]; then
+   log error "This script should not be run as root"
+   exit 1
+fi
+
+# Verify running on Arch
+if [[ ! -f /etc/arch-release ]]; then
+    log error "This script is designed for Arch Linux"
+    exit 1
+fi
+
+# Check dependencies
+for cmd in git curl tput 7z pacman makepkg; do
+    if ! command -v $cmd &> /dev/null; then
+        log error "Required command not found: $cmd"
+        exit 1
+    fi
+done
+
 # === Download with retries ===
 dltry() {
     set +u
@@ -290,8 +310,21 @@ librewolf_theme() {
         librewolf_install
     fi
     log info "Installing librewolf theme"
-    read -n 1 -s -r -p "Make sure you have created a firefox profile. Press any key to continue..."
+    read -n 1 -s -r -p "Make sure you have created a firefox profile by opening it. Press any key to continue..."
     LIBREPATH=$(find ~/.librewolf -maxdepth 1 -type d -name "*default-release" | head -n 1)
+    if [[ -z $LIBREPATH ]]; then
+        log warn "No LibreWolf profile found. Opening LibreWolf to create one..."
+        librewolf &
+        log info "Waiting for profile creation..."
+        sleep 3
+        LIBREPATH=$(find ~/.librewolf -maxdepth 1 -type d -name "*default-release" | head -n 1)
+        
+        if [[ -z $LIBREPATH ]]; then
+            log error "Still no profile found. Please create a profile manually and try again."
+            return 1
+        fi
+    fi
+
     mkdir -p $LIBREPATH/chrome
     cp ~/.config/gtk-themes/MacTahoe-gtk-theme/other/firefox/* $LIBREPATH/chrome -r
 
@@ -348,6 +381,11 @@ desktop_file() {
     for app in "${apps[@]}"; do
         src="/usr/share/applications/${app}.desktop"
         dest="$HOME/.local/share/applications/${app}.desktop"
+        
+        if [ ! -e "$src" ]; then
+            log warn "File $src doesn't exist. Skipping..."
+            continue
+        fi
 
         # Copy if it doesn't exist
         if [ ! -e "$dest" ]; then
