@@ -102,8 +102,8 @@
   <style name="def:list-marker"            foreground="text" bold="true"/>
 
   <!-- Others -->
-  <style name="def:error"                  foreground="pink" background="maroon" bold="true" />
-  <style name="def:warning"                foreground="pink" background="orange" bold="true" />
+  <style name="def:error"                  foreground="pink" bold="true" />
+  <style name="def:warning"                foreground="pink" bold="true" />
   <style name="def:note"                   foreground="yellow" bold="true" />
   <style name="def:net-address-in-comment" foreground="blue" italic="false" underline="true" />
   <style name="def:preprocessor"           foreground="subtext1" />
