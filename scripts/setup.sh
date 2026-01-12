@@ -148,7 +148,7 @@ cachyos_install() {
     echo "${bold}${green}==>${normal}${bold} Installing cachyos repos${normal}"
     dltry "curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o $TEMP/cachyos-repo.tar.xz"
     tar xvf $TEMP/cachyos-repo.tar.xz -C $TEMP
-    sudo $TEMP/cachyos-repo.sh
+    sudo $TEMP/cachyos-repo/cachyos-repo.sh
 }
 
 # install/uninstall packages
@@ -253,7 +253,8 @@ gtk_theme_install() {
         dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout add ZorinGrey-Light"
         dltry "git -C $TEMP/zorin-desktop-themes/ sparse-checkout add ZorinGrey-Dark"
         dltry "git -C $TEMP/zorin-desktop-themes/ checkout master"
-        cp -r "$TEMP/zorin-desktop-themes/Zorin*" "$HOME/.themes/"
+        cp -r "$TEMP/zorin-desktop-themes/ZorinGrey-Light" "$HOME/.themes/"
+        cp -r "$TEMP/zorin-desktop-themes/ZorinGrey-Dark" "$HOME/.themes/"
     fi
 
     if ! gnome-extensions list | grep -q dash-to-dock; then
@@ -489,7 +490,6 @@ for arg in "$@"; do
 done
 
 # === Execution ===
-build_mod
 [[ $RUN_NANO == 1 ]] && nano_config
 [[ $RUN_PARU == 1 ]] && paru_install
 [[ $RUN_CACHYOS == 1 ]] && cachyos_install
