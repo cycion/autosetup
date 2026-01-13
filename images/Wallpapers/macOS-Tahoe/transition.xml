@@ -1,0 +1,28 @@
+<background>
+  <starttime>
+    <year>2026</year>
+    <month>1</month>
+    <day>1</day>
+    <hour>6</hour>
+    <minute>0</minute>
+    <second>0</second>
+  </starttime>
+  <static>
+    <file>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Light.jpg</file>
+    <duration>36000</duration>
+  </static>
+  <transition type="overlay">
+    <duration>7200</duration>
+    <from>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Light.jpg</from>
+    <to>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Dark.jpg</to>
+  </transition>
+  <static>
+    <file>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Dark.jpg</file>
+    <duration>36000</duration>
+  </static>
+  <transition type="overlay">
+    <duration>7200</duration>
+    <from>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Dark.jpg</from>
+    <to>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Light.jpg</to>
+  </transition>
+</background>

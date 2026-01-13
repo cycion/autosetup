@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>Tag</name>
+    <filename>/home/quantum/Pictures/Wallpapers/macOS-Tahoe-Light.jpg</filename>
+    <filename-dark>/home/quantum/Pictures/Wallpapers/macOS-Tahoe-Dark.jpg</filename-dark>
+    <options>zoom</options>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Tahoe</name>
+    <filename>/home/quantum/Pictures/Wallpapers/macOS-Tahoe/transition.xml</filename>
+    <options>zoom</options>
+  </wallpaper>
+</wallpapers>

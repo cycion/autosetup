@@ -97,7 +97,7 @@ dltry() {
 }
 
 # === Directory creations ===
-mkdir -p ~/.config/gtk-themes ~/.config/starship ~/Pictures/Wallpapers ~/.local/share/gtksourceview-5/styles ~/.local/share/icons
+mkdir -p ~/.config/gtk-themes ~/.config/starship ~/Pictures/Wallpapers/Miscellaneous ~/Pictures/Wallpapers/macOS-Tahoe ~/.local/share/gtksourceview-5/styles ~/.local/share/icons ~/.local/share/gnome-background-properties
 
 # === Setup task ===
 
@@ -185,10 +185,12 @@ wallpapers_install() {
     log info "Downloading wallpapers"
 
     wallpapers=(
-        MountainLakeCenterSunset.jpg
-        SunsetMountainRight.jpg
-        SnowMountain.jpg
-        CloudySnowMountain.jpg
+        Miscellaneous/MountainLakeCenterSunset.jpg
+        Miscellaneous/SunsetMountainRight.jpg
+        Miscellaneous/SnowMountain.jpg
+        Miscellaneous/CloudySnowMountain.jpg
+        macOS-Tahoe/macOS-Tahoe-Dark.jpg
+        macOS-Tahoe/macOS-Tahoe-Light.jpg
     )
     base_url="https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/images/Wallpapers"
 
@@ -196,6 +198,7 @@ wallpapers_install() {
         log dl "Downloading $wallpaper"
         dltry "curl -sSL ${base_url}/${wallpaper} -o $HOME/Pictures/Wallpapers/${wallpaper}"
     done
+    dltry "curl -sSL https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/config/gnome-background-properties/macOS-Tahoe.xml -o $HOME/.local/share/gnome-background-properties/macOS-Tahoe.xml"
 }
 
 # installing zsh
