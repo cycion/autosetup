@@ -191,6 +191,7 @@ wallpapers_install() {
         Miscellaneous/CloudySnowMountain.jpg
         macOS-Tahoe/macOS-Tahoe-Dark.jpg
         macOS-Tahoe/macOS-Tahoe-Light.jpg
+        macOS-Tahoe/transition.xml
     )
     base_url="https://raw.githubusercontent.com/cycion/autosetup/refs/heads/main/images/Wallpapers"
 
@@ -267,7 +268,7 @@ gtk_theme_install() {
     fi
 
     log step "Installing gdm theme"
-    sudo ~/.config/gtk-themes/MacTahoe-gtk-theme/tweaks.sh -g -i apple -b ~/Pictures/Wallpapers/MountainLakeCenterSunset.jpg -nd -nb
+    sudo ~/.config/gtk-themes/MacTahoe-gtk-theme/tweaks.sh -g -i apple -b ~/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Light.jpg -nd -nb
 }
 
 # Installing MacTahoe icon theme
