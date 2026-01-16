@@ -5,17 +5,29 @@
         },
         "bluetooth_config": {
             "enabled": true
+        },
+        "power_management_config": {
+            "power_management": "power-profiles-daemon"
+        },
+        "print_service_config": {
+            "enabled": true
         }
     },
     "archinstall-language": "English",
     "auth_config": {},
-    "bootloader": "Systemd-boot",
+    "bootloader_config": {
+        "bootloader": "Systemd-boot",
+        "removable": false,
+        "uki": false
+    },
     "custom_commands": [],
     "disk_config": {
         "btrfs_options": {
-            "snapshot_config": null
+            "snapshot_config": {
+                "type": "Snapper"
+            }
         },
-        "config_type": "manual_partitioning",
+        "config_type": "default_layout",
         "device_modifications": [
             {
                 "device": "/dev/nvme0n1",
@@ -30,7 +42,7 @@
                         "fs_type": "fat32",
                         "mount_options": [],
                         "mountpoint": "/boot",
-                        "obj_id": "f62ef690-d567-4ca4-aaf5-3dcd3b3e3113",
+                        "obj_id": "185faf67-5fc5-4906-84ab-cc62c7715e18",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
@@ -51,20 +63,39 @@
                         "type": "primary"
                     },
                     {
-                        "btrfs": [],
+                        "btrfs": [
+                            {
+                                "mountpoint": "/",
+                                "name": "@"
+                            },
+                            {
+                                "mountpoint": "/home",
+                                "name": "@home"
+                            },
+                            {
+                                "mountpoint": "/var/log",
+                                "name": "@log"
+                            },
+                            {
+                                "mountpoint": "/var/cache/pacman/pkg",
+                                "name": "@pkg"
+                            }
+                        ],
                         "dev_path": null,
                         "flags": [],
-                        "fs_type": "ext4",
-                        "mount_options": [],
-                        "mountpoint": "/",
-                        "obj_id": "f9fe469f-7170-4371-b1ee-644312751d2a",
+                        "fs_type": "btrfs",
+                        "mount_options": [
+                            "compress=zstd"
+                        ],
+                        "mountpoint": null,
+                        "obj_id": "33cc5dc3-7aac-4147-9d49-ad8fba1434d5",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
                                 "value": 512
                             },
-                            "unit": "GiB",
-                            "value": 460
+                            "unit": "B",
+                            "value": 511033999360
                         },
                         "start": {
                             "sector_size": {
@@ -73,35 +104,6 @@
                             },
                             "unit": "B",
                             "value": 1074790400
-                        },
-                        "status": "create",
-                        "type": "primary"
-                    },
-                    {
-                        "btrfs": [],
-                        "dev_path": null,
-                        "flags": [
-                            "swap"
-                        ],
-                        "fs_type": "linux-swap",
-                        "mount_options": [],
-                        "mountpoint": null,
-                        "obj_id": "5fab1411-29e8-4c64-aec7-2c277de36bee",
-                        "size": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "B",
-                            "value": 17112760320
-                        },
-                        "start": {
-                            "sector_size": {
-                                "unit": "B",
-                                "value": 512
-                            },
-                            "unit": "B",
-                            "value": 494996029440
                         },
                         "status": "create",
                         "type": "primary"
@@ -114,13 +116,12 @@
             "encryption_type": "luks",
             "lvm_volumes": [],
             "partitions": [
-                "f9fe469f-7170-4371-b1ee-644312751d2a"
+                "33cc5dc3-7aac-4147-9d49-ad8fba1434d5"
             ]
         }
     },
     "hostname": "iMac",
     "kernels": [
-        "linux",
         "linux-zen"
     ],
     "locale_config": {
@@ -151,12 +152,16 @@
         "ttf-cascadia-code-nerd",
         "usbutils",
         "zsh",
+        "zsh-autosuggestions",
+        "zsh-syntax-highlighting",
         "rustup",
-        "unzip"
+        "unzip",
+        "base-devel",
+        "linux-zen-headers"
     ],
     "parallel_downloads": 0,
     "profile_config": {
-        "gfx_driver": "AMD / ATI (open-source)",
+        "gfx_driver": "All open-source",
         "greeter": "gdm",
         "profile": {
             "custom_settings": {
@@ -170,7 +175,10 @@
     },
     "script": null,
     "services": [],
-    "swap": true,
+    "swap": {
+        "algorithm": "zstd",
+        "enabled": true
+    },
     "timezone": "Asia/Ho_Chi_Minh",
-    "version": "3.0.11"
+    "version": "3.0.15"
 }
