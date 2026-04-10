@@ -316,13 +316,13 @@ librewolf_theme() {
     fi
     log info "Installing librewolf theme"
     read -n 1 -s -r -p "Make sure you have created a firefox profile by opening it. Press any key to continue..."
-    LIBREPATH=$(find ~/.librewolf -maxdepth 1 -type d -name "*default-release" | head -n 1)
+    LIBREPATH=$(find ~/.config/librewolf/librewolf -maxdepth 1 -type d -name "*default-default" | head -n 1)
     if [[ -z "$LIBREPATH" ]]; then
         log warn "No LibreWolf profile found. Opening LibreWolf to create one..."
         librewolf &
         log info "Waiting for profile creation..."
         sleep 3
-        LIBREPATH=$(find ~/.librewolf -maxdepth 1 -type d -name "*default-release" | head -n 1)
+        LIBREPATH=$(find ~/.config/librewolf/librewolf -maxdepth 1 -type d -name "*default-default" | head -n 1)
         
         if [[ -z "$LIBREPATH" ]]; then
             log error "Still no profile found. Please create a profile manually and try again."
