@@ -160,10 +160,12 @@ utils_install() {
     sudo pacman -Rns --noconfirm malcontent gnome-user-docs yelp gnome-weather gnome-maps gnome-tour gnome-music gnome-contacts simple-scan 2>/dev/null || true
 
     log info "Installing useful programs"
-    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting arduino-cli arduino-ide-bin arduino-language-server --noconfirm"
+    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting arduino-cli arduino-ide-bin arduino-language-server librewolf-bin --noconfirm"
     dltry "git clone https://github.com/LotusInputEngine/ibus-lotus.git $TEMP/ibus-lotus"
     sudo make -C $TEMP/ibus-lotus install 
     ibus restart
+    log warn "You should install some additional GNOME extensions"
+        read -n 1 -s -r -p "Press any key to continue..."
 }
 
 # installing librewolf
@@ -498,7 +500,7 @@ done
 [[ $RUN_PARU == 1 ]] && paru_install
 [[ $RUN_CACHYOS == 1 ]] && cachyos_install
 [[ $RUN_UTILS == 1 ]] && utils_install
-[[ $RUN_LIBREWOLF == 1 ]] && librewolf_install
+#[[ $RUN_LIBREWOLF == 1 ]] && librewolf_install
 [[ $RUN_WALLPAPERS == 1 ]] && wallpapers_install
 [[ $RUN_ZSH == 1 ]] && zsh_install
 [[ $RUN_GNOME_SCALE == 1 ]] && scale_enable
@@ -506,7 +508,7 @@ done
 [[ $RUN_ICONS == 1 ]] && icons_install
 [[ $RUN_GTKSRC == 1 ]] && gtksrc_theme
 [[ $RUN_TERMINAL == 1 ]] && terminal_theme
-[[ $RUN_CURSOR == 1 ]] && cursor_install
+#[[ $RUN_CURSOR == 1 ]] && cursor_install
 [[ $RUN_LIBREWOLF_THEME == 1 ]] && librewolf_theme
 [[ $RUN_YAZI == 1 ]] && yazi_theme
 [[ $RUN_NTFS == 1 ]] && ntfs3_fix
