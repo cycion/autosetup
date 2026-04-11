@@ -6,6 +6,9 @@
         "bluetooth_config": {
             "enabled": true
         },
+        "firewall_config": {
+            "firewall": "ufw"
+        },
         "power_management_config": {
             "power_management": "power-profiles-daemon"
         },
@@ -18,13 +21,13 @@
     "bootloader_config": {
         "bootloader": "Systemd-boot",
         "removable": false,
-        "uki": false
+        "uki": true
     },
     "custom_commands": [],
     "disk_config": {
         "btrfs_options": {
             "snapshot_config": {
-                "type": "Snapper"
+                "type": "Timeshift"
             }
         },
         "config_type": "default_layout",
@@ -42,7 +45,7 @@
                         "fs_type": "fat32",
                         "mount_options": [],
                         "mountpoint": "/boot",
-                        "obj_id": "185faf67-5fc5-4906-84ab-cc62c7715e18",
+                        "obj_id": "f338ecbb-cc0c-45b8-9bdc-5e8c5478cabf",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
@@ -88,7 +91,7 @@
                             "compress=zstd"
                         ],
                         "mountpoint": null,
-                        "obj_id": "33cc5dc3-7aac-4147-9d49-ad8fba1434d5",
+                        "obj_id": "67078da1-8529-4c5a-9206-b87ce977467e",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
@@ -116,11 +119,11 @@
             "encryption_type": "luks",
             "lvm_volumes": [],
             "partitions": [
-                "33cc5dc3-7aac-4147-9d49-ad8fba1434d5"
+                "67078da1-8529-4c5a-9206-b87ce977467e"
             ]
         }
     },
-    "hostname": "iMac",
+    "hostname": "sapphire",
     "kernels": [
         "linux-zen"
     ],
@@ -132,7 +135,37 @@
     "mirror_config": {
         "custom_repositories": [],
         "custom_servers": [],
-        "mirror_regions": {},
+        "mirror_regions": {
+            "Singapore": [
+                "http://sg.mirrors.cicku.me/archlinux/$repo/os/$arch",
+                "https://sg.mirrors.cicku.me/archlinux/$repo/os/$arch",
+                "http://mirror.aktkn.sg/archlinux/$repo/os/$arch",
+                "https://mirror.aktkn.sg/archlinux/$repo/os/$arch",
+                "http://mirror.jingk.ai/archlinux/$repo/os/$arch",
+                "https://mirror.jingk.ai/archlinux/$repo/os/$arch",
+                "http://ossmirror.mycloud.services/os/linux/archlinux/$repo/os/$arch",
+                "http://mirror.sg.gs/archlinux/$repo/os/$arch",
+                "https://mirror.sg.gs/archlinux/$repo/os/$arch",
+                "https://singapore.mirror.pkgbuild.com/$repo/os/$arch",
+                "https://sg.arch.niranjan.co/$repo/os/$arch",
+                "http://mirror.freedif.org/archlinux/$repo/os/$arch",
+                "https://mirror.freedif.org/archlinux/$repo/os/$arch",
+                "http://mirror.sg.cdn-perfprod.com/archlinux/$repo/os/$arch",
+                "https://mirror.sg.cdn-perfprod.com/archlinux/$repo/os/$arch"
+            ],
+            "Vietnam": [
+                "http://mirror.bizflycloud.vn/archlinux/$repo/os/$arch",
+                "https://mirrors.nguyenhoang.cloud/archlinux/$repo/os/$arch",
+                "https://mirrors.huongnguyen.dev/arch/$repo/os/$arch"
+            ],
+            "Worldwide": [
+                "http://mirror.rackspace.com/archlinux/$repo/os/$arch",
+                "https://mirror.rackspace.com/archlinux/$repo/os/$arch",
+                "https://ftpmirror.infania.net/mirror/archlinux/$repo/os/$arch",
+                "https://geo.mirror.pkgbuild.com/$repo/os/$arch",
+                "https://fastly.mirror.pkgbuild.com/$repo/os/$arch"
+            ]
+        },
         "optional_repositories": []
     },
     "network_config": {
@@ -145,8 +178,8 @@
         "git",
         "nano",
         "nano-syntax-highlighting",
+        "base-devel",
         "ntfs-3g",
-        "nvme-cli",
         "quota-tools",
         "sbctl",
         "ttf-cascadia-code-nerd",
@@ -155,13 +188,11 @@
         "zsh-autosuggestions",
         "zsh-syntax-highlighting",
         "rustup",
-        "unzip",
-        "base-devel",
-        "linux-zen-headers"
+        "unzip"
     ],
     "parallel_downloads": 0,
     "profile_config": {
-        "gfx_driver": "All open-source",
+        "gfx_driver": "AMD / ATI (open-source)",
         "greeter": "gdm",
         "profile": {
             "custom_settings": {
@@ -180,5 +211,6 @@
         "enabled": true
     },
     "timezone": "Asia/Ho_Chi_Minh",
-    "version": "3.0.15"
+    "version": "4.1"
 }
+
