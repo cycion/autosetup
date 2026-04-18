@@ -154,16 +154,13 @@ cachyos_install() {
 # install/uninstall packages
 utils_install() {
     log info "Installing GNOME utilities"
-    dltry "sudo pacman -Sy --needed --noconfirm gnome-terminal gtksourceview5 gnome-browser-connector dconf-editor gnome-sound-recorder collision ghex file-roller gnome-firmware"
+    dltry "sudo pacman -Sy --needed --noconfirm gnome-terminal gnome-browser-connector dconf-editor collision file-roller gnome-firmware"
 
     log info "Removing GNOME bloatware"
     sudo pacman -Rns --noconfirm malcontent gnome-user-docs yelp gnome-weather gnome-maps gnome-tour gnome-music gnome-contacts simple-scan 2>/dev/null || true
 
     log info "Installing useful programs"
-    dltry "paru -Sy --needed code code-marketplace ibus-rime go fwupd apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting arduino-cli arduino-ide-bin arduino-language-server librewolf-bin --noconfirm"
-    dltry "git clone https://github.com/LotusInputEngine/ibus-lotus.git $TEMP/ibus-lotus"
-    sudo make -C $TEMP/ibus-lotus install 
-    ibus restart
+    dltry "paru -Sy --needed code code-marketplace ibus-rime go apple-fonts yazi starship zsh-autosuggestions zsh-syntax-highlighting arduino-cli arduino-ide-bin arduino-language-server librewolf-bin --noconfirm"
     log warn "You should install some additional GNOME extensions"
         read -n 1 -s -r -p "Press any key to continue..."
 }
@@ -250,7 +247,7 @@ gtk_theme_install() {
     [ -d "$HOME/.config/gtk-themes/MacTahoe-gtk-theme" ] || dltry "git clone --depth=1 https://github.com/vinceliuice/MacTahoe-gtk-theme.git ~/.config/gtk-themes/MacTahoe-gtk-theme"
 
     log inst "Installing MacTahoe-gtk-theme"
-    ~/.config/gtk-themes/MacTahoe-gtk-theme/install.sh --libadwaita --shell -i apple -ns --round --darker
+    ~/.config/gtk-themes/MacTahoe-gtk-theme/install.sh --shell -i apple --round --darker
 
     if [ ! -d "$HOME/.themes/ZorinGrey-Dark" ]; then
         log dl "Downloading ZorinGrey theme"
@@ -271,6 +268,7 @@ gtk_theme_install() {
 
     log step "Installing gdm theme"
     sudo ~/.config/gtk-themes/MacTahoe-gtk-theme/tweaks.sh -g -i apple -b ~/Pictures/Wallpapers/macOS-Tahoe/macOS-Tahoe-Light.jpg -nd -nb
+    sudo cp ~/.config/monitors.xml /etc/xdg/monitors.xml
 }
 
 # Installing MacTahoe icon theme
@@ -496,14 +494,14 @@ for arg in "$@"; do
 done
 
 # === Execution ===
-[[ $RUN_NANO == 1 ]] && nano_config
-[[ $RUN_PARU == 1 ]] && paru_install
-[[ $RUN_CACHYOS == 1 ]] && cachyos_install
+#[[ $RUN_NANO == 1 ]] && nano_config
+#[[ $RUN_PARU == 1 ]] && paru_install
+#[[ $RUN_CACHYOS == 1 ]] && cachyos_install
 [[ $RUN_UTILS == 1 ]] && utils_install
 #[[ $RUN_LIBREWOLF == 1 ]] && librewolf_install
 [[ $RUN_WALLPAPERS == 1 ]] && wallpapers_install
 [[ $RUN_ZSH == 1 ]] && zsh_install
-[[ $RUN_GNOME_SCALE == 1 ]] && scale_enable
+#[[ $RUN_GNOME_SCALE == 1 ]] && scale_enable
 [[ $RUN_GTK_THEME == 1 ]] && gtk_theme_install
 [[ $RUN_ICONS == 1 ]] && icons_install
 [[ $RUN_GTKSRC == 1 ]] && gtksrc_theme
@@ -511,5 +509,5 @@ done
 #[[ $RUN_CURSOR == 1 ]] && cursor_install
 [[ $RUN_LIBREWOLF_THEME == 1 ]] && librewolf_theme
 [[ $RUN_YAZI == 1 ]] && yazi_theme
-[[ $RUN_NTFS == 1 ]] && ntfs3_fix
+#[[ $RUN_NTFS == 1 ]] && ntfs3_fix
 [[ $RUN_DESKTOP == 1 ]] && desktop_file
