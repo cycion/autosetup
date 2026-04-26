@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=UltiMaker Cura
+StartupWMClass=UltiMaker-Cura
+Icon=/home/quantum/AppImages/.icons/ultimaker_cura
+TryExec=/home/quantum/AppImages/ultimaker_cura.appimage
+Exec=env DESKTOPINTEGRATION=1 /home/quantum/AppImages/ultimaker_cura.appimage
+Terminal=false
+Categories=Utility;
+X-AppImage-Arch=x86_64
+X-AppImage-Version=5.12.1
+X-AppImage-Name=UltiMaker Cura
